@@ -392,3 +392,4 @@ MenzaPP/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 MenzaPP/Web.config
 *.config
 .vs/
+/MenzaPP/MenzaPP.csproj
