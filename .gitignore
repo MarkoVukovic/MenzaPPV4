@@ -393,3 +393,5 @@ MenzaPP/Web.config
 *.config
 .vs/
 .suo
+*.txt
+.txt
