@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="menzappModelStoreContainer" CdmEntityContainer="menzappEntitiesPravi">
+    <EntitySetMapping Name="Fakultets">
+      <EntityTypeMapping TypeName="menzappModel.Fakultet">
+        <MappingFragment StoreEntitySet="Fakultet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="naziv" ColumnName="naziv" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Iksicas">
+      <EntityTypeMapping TypeName="menzappModel.Iksica">
+        <MappingFragment StoreEntitySet="Iksica">
+          <ScalarProperty Name="brojIksice" ColumnName="brojIksice" />
+          <ScalarProperty Name="iznos" ColumnName="iznos" />
+          <ScalarProperty Name="iznosMaks" ColumnName="iznosMaks" />
+          <ScalarProperty Name="iznosMin" ColumnName="iznosMin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jelovniks">
+      <EntityTypeMapping TypeName="menzappModel.Jelovnik">
+        <MappingFragment StoreEntitySet="Jelovnik">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="datum" ColumnName="datum" />
+          <ScalarProperty Name="jelovnikContent" ColumnName="jelovnikContent" />
+          <ScalarProperty Name="idMenza" ColumnName="idMenza" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Komentaris">
+      <EntityTypeMapping TypeName="menzappModel.Komentari">
+        <MappingFragment StoreEntitySet="Komentari">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="komentarContent" ColumnName="komentarContent" />
+          <ScalarProperty Name="idMenza" ColumnName="idMenza" />
+          <ScalarProperty Name="idKorisnik" ColumnName="idKorisnik" />
+          <ScalarProperty Name="vrijemeDatum" ColumnName="vrijemeDatum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Korisniks">
+      <EntityTypeMapping TypeName="menzappModel.Korisnik">
+        <MappingFragment StoreEntitySet="Korisnik">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ime" ColumnName="ime" />
+          <ScalarProperty Name="prezime" ColumnName="prezime" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="brojIksice" ColumnName="brojIksice" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="grad" ColumnName="grad" />
+          <ScalarProperty Name="idFaks" ColumnName="idFaks" />
+          <ScalarProperty Name="admin" ColumnName="admin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menzas">
+      <EntityTypeMapping TypeName="menzappModel.Menza">
+        <MappingFragment StoreEntitySet="Menza">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="naziv" ColumnName="naziv" />
+          <ScalarProperty Name="adresa" ColumnName="adresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="menzappModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

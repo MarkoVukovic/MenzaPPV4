@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="menzappModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Fakultet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Iksica">
+          <Key>
+            <PropertyRef Name="brojIksice" />
+          </Key>
+          <Property Name="brojIksice" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="iznos" Type="int" />
+          <Property Name="iznosMaks" Type="int" />
+          <Property Name="iznosMin" Type="int" />
+        </EntityType>
+        <EntityType Name="Jelovnik">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datum" Type="date" Nullable="false" />
+          <Property Name="jelovnikContent" Type="varchar(max)" Nullable="false" />
+          <Property Name="idMenza" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Komentari">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="komentarContent" Type="varchar(max)" Nullable="false" />
+          <Property Name="idMenza" Type="int" Nullable="false" />
+          <Property Name="idKorisnik" Type="int" Nullable="false" />
+          <Property Name="vrijemeDatum" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ime" Type="varchar" MaxLength="20" />
+          <Property Name="prezime" Type="varchar" MaxLength="20" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="brojIksice" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="grad" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="idFaks" Type="int" Nullable="false" />
+          <Property Name="admin" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menza">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="24" Nullable="false" />
+          <Property Name="adresa" Type="varchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Jelovnik_Menza">
+          <End Role="Menza" Type="Self.Menza" Multiplicity="1" />
+          <End Role="Jelovnik" Type="Self.Jelovnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menza">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jelovnik">
+              <PropertyRef Name="idMenza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Komentari_Korisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Komentari" Type="Self.Komentari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Komentari">
+              <PropertyRef Name="idKorisnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Komentari_Menza">
+          <End Role="Menza" Type="Self.Menza" Multiplicity="1" />
+          <End Role="Komentari" Type="Self.Komentari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menza">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Komentari">
+              <PropertyRef Name="idMenza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korisnik_Fakultet">
+          <End Role="Fakultet" Type="Self.Fakultet" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fakultet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="idFaks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korisnik_Iksica">
+          <End Role="Iksica" Type="Self.Iksica" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Iksica">
+              <PropertyRef Name="brojIksice" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="brojIksice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="menzappModelStoreContainer">
+          <EntitySet Name="Fakultet" EntityType="Self.Fakultet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Iksica" EntityType="Self.Iksica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jelovnik" EntityType="Self.Jelovnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Komentari" EntityType="Self.Komentari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menza" EntityType="Self.Menza" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Jelovnik_Menza" Association="Self.FK_Jelovnik_Menza">
+            <End Role="Menza" EntitySet="Menza" />
+            <End Role="Jelovnik" EntitySet="Jelovnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Komentari_Korisnik" Association="Self.FK_Komentari_Korisnik">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Komentari" EntitySet="Komentari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Komentari_Menza" Association="Self.FK_Komentari_Menza">
+            <End Role="Menza" EntitySet="Menza" />
+            <End Role="Komentari" EntitySet="Komentari" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korisnik_Fakultet" Association="Self.FK_Korisnik_Fakultet">
+            <End Role="Fakultet" EntitySet="Fakultet" />
+            <End Role="Korisnik" EntitySet="Korisnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korisnik_Iksica" Association="Self.FK_Korisnik_Iksica">
+            <End Role="Iksica" EntitySet="Iksica" />
+            <End Role="Korisnik" EntitySet="Korisnik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="menzappModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Fakultet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naziv" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Korisniks" Relationship="Self.FK_Korisnik_Fakultet" FromRole="Fakultet" ToRole="Korisnik" />
+        </EntityType>
+        <EntityType Name="Iksica">
+          <Key>
+            <PropertyRef Name="brojIksice" />
+          </Key>
+          <Property Name="brojIksice" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="iznos" Type="Int32" />
+          <Property Name="iznosMaks" Type="Int32" />
+          <Property Name="iznosMin" Type="Int32" />
+          <NavigationProperty Name="Korisniks" Relationship="Self.FK_Korisnik_Iksica" FromRole="Iksica" ToRole="Korisnik" />
+        </EntityType>
+        <EntityType Name="Jelovnik">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="jelovnikContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMenza" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Menza" Relationship="Self.FK_Jelovnik_Menza" FromRole="Jelovnik" ToRole="Menza" />
+        </EntityType>
+        <EntityType Name="Komentari">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="komentarContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idMenza" Type="Int32" Nullable="false" />
+          <Property Name="idKorisnik" Type="Int32" Nullable="false" />
+          <Property Name="vrijemeDatum" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Korisnik" Relationship="Self.FK_Komentari_Korisnik" FromRole="Komentari" ToRole="Korisnik" />
+          <NavigationProperty Name="Menza" Relationship="Self.FK_Komentari_Menza" FromRole="Komentari" ToRole="Menza" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="prezime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="brojIksice" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="grad" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idFaks" Type="Int32" Nullable="false" />
+          <Property Name="admin" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fakultet" Relationship="Self.FK_Korisnik_Fakultet" FromRole="Korisnik" ToRole="Fakultet" />
+          <NavigationProperty Name="Iksica" Relationship="Self.FK_Korisnik_Iksica" FromRole="Korisnik" ToRole="Iksica" />
+          <NavigationProperty Name="Komentaris" Relationship="Self.FK_Komentari_Korisnik" FromRole="Korisnik" ToRole="Komentari" />
+        </EntityType>
+        <EntityType Name="Menza">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="24" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adresa" Type="String" MaxLength="36" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Jelovniks" Relationship="Self.FK_Jelovnik_Menza" FromRole="Menza" ToRole="Jelovnik" />
+          <NavigationProperty Name="Komentaris" Relationship="Self.FK_Komentari_Menza" FromRole="Menza" ToRole="Komentari" />
+        </EntityType>
+        <Association Name="FK_Korisnik_Fakultet">
+          <End Role="Fakultet" Type="Self.Fakultet" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fakultet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="idFaks" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Korisnik_Iksica">
+          <End Role="Iksica" Type="Self.Iksica" Multiplicity="1" />
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Iksica">
+              <PropertyRef Name="brojIksice" />
+            </Principal>
+            <Dependent Role="Korisnik">
+              <PropertyRef Name="brojIksice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jelovnik_Menza">
+          <End Role="Menza" Type="Self.Menza" Multiplicity="1" />
+          <End Role="Jelovnik" Type="Self.Jelovnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menza">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Jelovnik">
+              <PropertyRef Name="idMenza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Komentari_Korisnik">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="1" />
+          <End Role="Komentari" Type="Self.Komentari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Komentari">
+              <PropertyRef Name="idKorisnik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Komentari_Menza">
+          <End Role="Menza" Type="Self.Menza" Multiplicity="1" />
+          <End Role="Komentari" Type="Self.Komentari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menza">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Komentari">
+              <PropertyRef Name="idMenza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="menzappEntitiesPravi" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Fakultets" EntityType="Self.Fakultet" />
+          <EntitySet Name="Iksicas" EntityType="Self.Iksica" />
+          <EntitySet Name="Jelovniks" EntityType="Self.Jelovnik" />
+          <EntitySet Name="Komentaris" EntityType="Self.Komentari" />
+          <EntitySet Name="Korisniks" EntityType="Self.Korisnik" />
+          <EntitySet Name="Menzas" EntityType="Self.Menza" />
+          <AssociationSet Name="FK_Korisnik_Fakultet" Association="Self.FK_Korisnik_Fakultet">
+            <End Role="Fakultet" EntitySet="Fakultets" />
+            <End Role="Korisnik" EntitySet="Korisniks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Korisnik_Iksica" Association="Self.FK_Korisnik_Iksica">
+            <End Role="Iksica" EntitySet="Iksicas" />
+            <End Role="Korisnik" EntitySet="Korisniks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jelovnik_Menza" Association="Self.FK_Jelovnik_Menza">
+            <End Role="Menza" EntitySet="Menzas" />
+            <End Role="Jelovnik" EntitySet="Jelovniks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Komentari_Korisnik" Association="Self.FK_Komentari_Korisnik">
+            <End Role="Korisnik" EntitySet="Korisniks" />
+            <End Role="Komentari" EntitySet="Komentaris" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Komentari_Menza" Association="Self.FK_Komentari_Menza">
+            <End Role="Menza" EntitySet="Menzas" />
+            <End Role="Komentari" EntitySet="Komentaris" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="menzappModelStoreContainer" CdmEntityContainer="menzappEntitiesPravi">
+          <EntitySetMapping Name="Fakultets">
+            <EntityTypeMapping TypeName="menzappModel.Fakultet">
+              <MappingFragment StoreEntitySet="Fakultet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Iksicas">
+            <EntityTypeMapping TypeName="menzappModel.Iksica">
+              <MappingFragment StoreEntitySet="Iksica">
+                <ScalarProperty Name="brojIksice" ColumnName="brojIksice" />
+                <ScalarProperty Name="iznos" ColumnName="iznos" />
+                <ScalarProperty Name="iznosMaks" ColumnName="iznosMaks" />
+                <ScalarProperty Name="iznosMin" ColumnName="iznosMin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jelovniks">
+            <EntityTypeMapping TypeName="menzappModel.Jelovnik">
+              <MappingFragment StoreEntitySet="Jelovnik">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="datum" ColumnName="datum" />
+                <ScalarProperty Name="jelovnikContent" ColumnName="jelovnikContent" />
+                <ScalarProperty Name="idMenza" ColumnName="idMenza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Komentaris">
+            <EntityTypeMapping TypeName="menzappModel.Komentari">
+              <MappingFragment StoreEntitySet="Komentari">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="komentarContent" ColumnName="komentarContent" />
+                <ScalarProperty Name="idMenza" ColumnName="idMenza" />
+                <ScalarProperty Name="idKorisnik" ColumnName="idKorisnik" />
+                <ScalarProperty Name="vrijemeDatum" ColumnName="vrijemeDatum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisniks">
+            <EntityTypeMapping TypeName="menzappModel.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ime" ColumnName="ime" />
+                <ScalarProperty Name="prezime" ColumnName="prezime" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="brojIksice" ColumnName="brojIksice" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="grad" ColumnName="grad" />
+                <ScalarProperty Name="idFaks" ColumnName="idFaks" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menzas">
+            <EntityTypeMapping TypeName="menzappModel.Menza">
+              <MappingFragment StoreEntitySet="Menza">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

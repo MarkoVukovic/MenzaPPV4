@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c5bb018d141d41b3b2a34cb3ff90c2a7" Name="Diagram1">
+        <EntityTypeShape EntityType="menzappModel.Fakultet" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="menzappModel.Iksica" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="menzappModel.Jelovnik" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+<<<<<<< HEAD
+        <EntityTypeShape EntityType="menzappModel.Komentari" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="menzappModel.Korisnik" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+=======
+        
+        
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/master
+        <EntityTypeShape EntityType="menzappModel.Menza" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="menzappModel.FK_Korisnik_Fakultet" ManuallyRouted="false" />
+        <AssociationConnector Association="menzappModel.FK_Korisnik_Iksica" ManuallyRouted="false" />
+        <AssociationConnector Association="menzappModel.FK_Jelovnik_Menza" ManuallyRouted="false" />
+        <AssociationConnector Association="menzappModel.FK_Komentari_Korisnik" ManuallyRouted="false" />
+        <AssociationConnector Association="menzappModel.FK_Komentari_Menza" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
