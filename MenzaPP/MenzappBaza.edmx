@@ -284,7 +284,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="menzappEntitiesPravi" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="menzappEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Fakultets" EntityType="Self.Fakultet" />
           <EntitySet Name="Iksicas" EntityType="Self.Iksica" />
           <EntitySet Name="Jelovniks" EntityType="Self.Jelovnik" />
@@ -317,7 +317,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="menzappModelStoreContainer" CdmEntityContainer="menzappEntitiesPravi">
+        <EntityContainerMapping StorageEntityContainer="menzappModelStoreContainer" CdmEntityContainer="menzappEntities">
           <EntitySetMapping Name="Fakultets">
             <EntityTypeMapping TypeName="menzappModel.Fakultet">
               <MappingFragment StoreEntitySet="Fakultet">

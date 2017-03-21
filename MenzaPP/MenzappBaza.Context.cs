@@ -13,10 +13,10 @@ namespace MenzaPP
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class menzappEntitiesPravi : DbContext
+    public partial class menzappEntities : DbContext
     {
-        public menzappEntitiesPravi()
-            : base("name=menzappEntitiesPravi")
+        public menzappEntities()
+            : base("name=menzappEntities")
         {
         }
     
