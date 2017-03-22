@@ -1,0 +1,42 @@
+﻿@model MenzaPP.Jelovnik
+
+@{
+    ViewBag.Title = "Jelovnik";
+}
+
+<h2>Jelovnik</h2>
+
+<div>
+    <h4>Jelovnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.datum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jelovnikContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jelovnikContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Menza.naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Menza.naziv)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

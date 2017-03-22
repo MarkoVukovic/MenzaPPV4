@@ -20,8 +20,7 @@ namespace MenzaPP.Controllers
             return View(db.Menzas.ToList());
         }
 
-        // GET: Menzas/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Jelovnik(int? id)
         {
             if (id == null)
             {
