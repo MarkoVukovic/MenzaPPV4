@@ -17,7 +17,8 @@ namespace MenzaPP.Controllers
         // GET: Menzas
         public ActionResult Index()
         {
-            return View(db.Menzas.ToList());
+            IEnumerable<Menza> a = db.Menzas.ToList();
+            return View(a);
         }
 
         public ActionResult Jelovnik(int? id)
@@ -31,7 +32,9 @@ namespace MenzaPP.Controllers
             {
                 return HttpNotFound();
             }
-            return View(menza.Jelovniks);
+            Jelovnik a = db.Jelovniks.Where(sa => sa.idMenza == id).First();
+
+            return View(a);
         }
 
         // GET: Menzas/Create
