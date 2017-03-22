@@ -6,7 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using MenzaPP;
+using MenzaPP.Models;
 
 namespace MenzaPP.Controllers
 {
@@ -31,7 +31,7 @@ namespace MenzaPP.Controllers
             {
                 return HttpNotFound();
             }
-            return View(menza);
+            return View(menza.Jelovniks);
         }
 
         // GET: Menzas/Create

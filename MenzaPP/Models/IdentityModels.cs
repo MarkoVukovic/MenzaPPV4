@@ -29,5 +29,7 @@ namespace MenzaPP.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<MenzaPP.Models.JelovnikModel> JelovnikModels { get; set; }
     }
 }
