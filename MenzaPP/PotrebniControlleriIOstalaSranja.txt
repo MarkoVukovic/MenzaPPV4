@@ -1,0 +1,7 @@
+﻿Funkcionalnost
+
+	- Menze sa slikom
+	- xica - Stanje, ime, prezime, slika studente (Roko kaze plavuša), broj ixice, fakultet
+	- (xica - korisnik relacija)
+	- Online korisnici
+	- 
