@@ -33,7 +33,6 @@ namespace MenzaPP.Controllers
                 return HttpNotFound();
             }
             Jelovnik a = db.Jelovniks.Where(sa => sa.idMenza == id).First();
-
             return View(a);
         }
 
